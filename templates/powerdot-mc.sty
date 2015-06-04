@@ -1,0 +1,110 @@
+%%
+%% Based on 'powerdot-default.sty'
+%%
+%% Requires 'logo.eps' file 
+%%
+%% by Tomasz Golan
+%%
+
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-mc}[]
+\RequirePackage{pifont}
+
+\pddefinepalettes{default}
+{
+  \definecolor{pdcolor1}{RGB}{ 44,  50,  61} % black
+  \definecolor{pdcolor2}{RGB}{255, 255, 255} % white
+  \definecolor{pdcolor3}{RGB}{ 76, 100, 114} % blue / gray
+  \definecolor{pdcolor4}{RGB}{ 90, 134, 119} % green
+  \definecolor{pdcolor5}{RGB}{240,  85,  38} % orange
+  \definecolor{pdcolor6}{RGB}{218,  31,  47} % red
+  \definecolor{pdcolor7}{RGB}{ 52, 130, 190} %blue
+}
+
+\pddefinetemplate{titleslide}
+{
+  titlefont = \LARGE\sl\color{pdcolor2}\centering,
+  clockcolor = pdcolor2, clockpos = {.99\slidewidth, \slideheight},
+  texthook = t, textpos = {.5\slidewidth, .65\slideheight},
+  textwidth = .8\slidewidth, textheight = .5\slideheight,
+  textfont = \large\color{pdcolor2}\centering  
+}
+{
+  \psframe*[linecolor = pdcolor1](0,\slideheight)(\slidewidth, 0)
+}
+
+\pddefinetemplate{basic}
+{
+  titlepos = {.2\slidewidth, .939\slideheight}, titlewidth = .75\slidewidth, titlefont = \large\bfseries\raggedright\color{pdcolor2},
+  clockcolor = pdcolor2, clockpos = {.99\slidewidth, \slideheight},
+  textheight = .71\slideheight, textwidth = .71\slidewidth,
+  textpos = {.23\slidewidth, .85\slideheight},
+  lfpos = {.03\slidewidth, .02\slideheight},
+  cfpos = {.5\slidewidth, .02\slideheight},
+  rfpos = {.97\slidewidth, .02\slideheight},
+  lffont = \color{pdcolor3}\tiny,
+  cffont = \color{pdcolor3}\tiny,
+  rffont = \color{pdcolor3}\tiny,
+  toctcolor = pdcolor1,
+  tochlcolor = pdcolor1,
+  tochltcolor = pdcolor2,
+}
+{
+  \psframe*[linecolor = pdcolor1](0, .901\slideheight)(\slidewidth, \slideheight)
+  \rput[tl](0, \slideheight){\includegraphics[clip, width = .17\slidewidth]{logo.eps}}
+  \psline[linecolor = pdcolor2, linewidth = 0.1pt](.17\slidewidth, .901\slideheight)(.17\slidewidth, \slideheight)
+  \psline[linecolor = pdcolor1, linewidth = 0.1pt](0, .05\slideheight)(\slidewidth, .05\slideheight)
+}
+
+\pddefinetemplate[basic]{wideslide}
+{
+  textpos = {.03\slidewidth, .87\slideheight},
+  textwidth = .94\slidewidth
+}
+{}
+  
+\pddefinetemplate[basic]{slide}
+{
+  tocpos = {.015\slidewidth, .8\slideheight},
+  tocwidth = .14\slidewidth,
+  tocsecm = {\psline[linewidth = .5pt, linecolor = pdcolor1](-.05, -.05)(.143\slidewidth, -.05)}
+}
+{
+  \psline[linecolor = pdcolor1, linewidth = 0.1pt](.17\slidewidth, .05\slideheight)(.17\slidewidth, .901\slideheight)
+}
+
+\pddefinetemplate[titleslide]{sectionslide}
+{
+  titlehook = c, titlefont = \LARGE\color{pdcolor2}\centering,
+  titlepos = {.5\slidewidth, .5\slideheight},
+  titlewidth = .8\slidewidth
+}
+{
+  \psframe*[linecolor = pdcolor1](0, \slideheight)(\slidewidth, 0)
+}
+
+\pddefinetemplate[titleslide]{sectionwideslide}
+{
+  titlehook = c, titlefont = \LARGE\color{pdcolor2}\centering,
+  titlepos = {.5\slidewidth, .5\slideheight},
+  titlewidth = .8\slidewidth
+}
+{
+  \psframe*[linecolor = pdcolor1](0, \slideheight)(\slidewidth, 0)
+}
+
+\setkeys[pd]{section}{sectemp = sectionslide, widesectemp = sectionwideslide}
+
+\def\labelitemi{\footnotesize\ding{110}}
+\def\labelitemii{\small\ding{117}}
+\def\labelitemiii{\tiny\ding{110}}
+\def\labelitemiv{\tiny\ding{117}}
+
+\pdsetup
+{
+  list = {labelsep = 1em, leftmargin = *, itemsep = 0pt, topsep = 5pt,parsep = 0pt}
+}
+\def\rmdefault{cmss}
+\endinput
+%%
+%% End of file `powerdot-mc.sty'.
